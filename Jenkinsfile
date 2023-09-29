@@ -1,9 +1,9 @@
 //# SCM SHOULD CLONE YOUR GITHUB REPOSITORY BEFORE PIPELINE STARTS
 pipeline {
   agent any
-  tools {
-    jdk 'jdk 1.8'
-  }
+  //tools {
+  //  jdk 'jdk 1.8'
+  //}
   stages {
   //  # BUILD YOUR PROJECT
     stage('BuildAndUnitTest') {
