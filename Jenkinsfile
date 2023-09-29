@@ -1,25 +1,25 @@
-# SCM SHOULD CLONE YOUR GITHUB REPOSITORY BEFORE PIPELINE STARTS
+//# SCM SHOULD CLONE YOUR GITHUB REPOSITORY BEFORE PIPELINE STARTS
 pipeline {
   agent any
   tools {
     jdk 'jdk 1.11'
   }
   stages {
-    # BUILD YOUR PROJECT
+  //  # BUILD YOUR PROJECT
     stage('BuildAndUnitTest') {
       steps {
         sh 'echo BuildAndUnitTest!'
         //sh "sudo ./gradlew clean build"
       }
     }
-    # REMOVE OLD KUBECONFIG IF IT EXISTS
+    //# REMOVE OLD KUBECONFIG IF IT EXISTS
      stage('remove kubeconfig if exists') {
            steps {
              sh 'echo remove kubeconfig if exists'
              //sh "rm -rf ${WORKSPACE}/cd_config.yaml"
            }
      }
-# LOAD KUBECONFIG FILE FROM CREDENTIALS WE CREATED EARLIER
+//# LOAD KUBECONFIG FILE FROM CREDENTIALS WE CREATED EARLIER
     stage('setup kubeconfig') {
           steps {
             withCredentials([file(credentialsId: 'standalone_config', variable: 'standalone_config')]) {
@@ -27,8 +27,8 @@ pipeline {
             }
           }
     }
-# PUSH DOCKER IMAGE (LETS ASSUME YOU HAVE ROBOKEY SET IN DOCKERHUB)
-# PLEASE REPLACE THIS WITH YOUR DOCKER PUSH
+//# PUSH DOCKER IMAGE (LETS ASSUME YOU HAVE ROBOKEY SET IN DOCKERHUB)
+//# PLEASE REPLACE THIS WITH YOUR DOCKER PUSH
      stage('push image to docker') {
       steps {
         withCredentials([string(credentialsId: 'robokey', variable: 'robokey')]) {
@@ -41,12 +41,12 @@ pipeline {
         }
       }
      }
-# LETS EXTRACT IMAGE THAT WE JUST PUSHED AND DEPLOY TO QA 
-# REMEMBER WE USED {{IMAGE}} IN DEPLOYMENT.YAML AS TEMPLATE
-# MY ABOVE GRADLE TASK PUTS IMAGE IT CREATES IN FILE image.txt
-# WE WILL REPLACE {{IMAGE}} WITH IMAGE IN image.txt 
-# NOTE HERE WE ARE ASSUMING image.txt HOLDS THE IMAGE THERE MIGHT BE # OTHER WAYS YOU CAN STORE THE IMAGE AND REPLACE IT USING SHELL 
-# COMMANDS
+//# LETS EXTRACT IMAGE THAT WE JUST PUSHED AND DEPLOY TO QA 
+//# REMEMBER WE USED {{IMAGE}} IN DEPLOYMENT.YAML AS TEMPLATE
+//# MY ABOVE GRADLE TASK PUTS IMAGE IT CREATES IN FILE image.txt
+//# WE WILL REPLACE {{IMAGE}} WITH IMAGE IN image.txt 
+//# NOTE HERE WE ARE ASSUMING image.txt HOLDS THE IMAGE THERE MIGHT BE # OTHER WAYS YOU CAN STORE THE IMAGE AND REPLACE IT USING SHELL 
+//# COMMANDS
     stage('deploy') {
           steps {
              sh '''
@@ -59,7 +59,7 @@ pipeline {
           }
      }
      
-# CHECK IF ALL PODS ARE UP IN YOUR NAMESPACE
+//# CHECK IF ALL PODS ARE UP IN YOUR NAMESPACE
      stage('check if all pods are ready') {
            options {
              timeout(time: 10, unit: 'MINUTES')
@@ -72,7 +72,7 @@ pipeline {
                  '''
            }
       }
-# REMOVE KUBECONFIG AS IT IS NO LONGER NEEDED
+//# REMOVE KUBECONFIG AS IT IS NO LONGER NEEDED
      stage('remove kubeconfig file') {
        steps {
              echo 'remove kubeconfig file'
