@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cd-dep
+  namespace: ns
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: dep-instance
+    spec:
+      containers:
+        - name: dep-container
+          image: {{image}}
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 8443
+              protocol: TCP
