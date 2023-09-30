@@ -22,15 +22,15 @@ hpipeline {
         //sh "docker rmi kmlaydin/podinfo:${env.BUILD_NUMBER}"
       }
     }
-    stage('Apply Kubernetes Files') {
-      steps {
-          withKubeConfig([credentialsId: 'JENKINS-CONNECT-TO-REMOTE-K8S']) {
-          sh 'echo Apply Kubernetes Files'
-          //sh 'cat deployment.yaml | sed "s/{{BUILD_NUMBER}}/$BUILD_NUMBER/g" | kubectl apply -f -'
-          //sh 'kubectl apply -f service.yaml'
-        }
-      }
-   }
+   // stage('Apply Kubernetes Files') {
+   //   steps {
+   //       withKubeConfig([credentialsId: 'JENKINS-CONNECT-TO-REMOTE-K8S']) {
+   //       sh 'echo Apply Kubernetes Files'
+   //       //sh 'cat deployment.yaml | sed "s/{{BUILD_NUMBER}}/$BUILD_NUMBER/g" | kubectl apply -f -'
+   //       //sh 'kubectl apply -f service.yaml'
+   //     }
+   //   }
+   //}
    //stage('Deploy to Kubernetes') {
    //  steps {
    //    withCredentials([file(credentialsId: 'JENKINS-CONNECT-TO-REMOTE-K8S', variable: 'KUBECONFIG')]) {
