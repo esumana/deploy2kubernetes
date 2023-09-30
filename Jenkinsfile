@@ -31,15 +31,15 @@ pipeline {
         }
       }
    }
-   //stage('Deploy to Kubernetes') {
-   //  steps {
-   //    withCredentials([file(credentialsId: 'JENKINS-CONNECT-TO-REMOTE-K8S', variable: 'KUBECONFIG')]) {
-   //      echo 'Deploy to Kubernetes'
-   //      // Use the KUBECONFIG variable to interact with Kubernetes
-   //      //sh 'kubectl --kubeconfig=$KUBECONFIG apply -f your-deployment.yaml'
-   //    }
-   //  }
-   // }
+   stage('Deploy to Kubernetes') {
+     steps {
+       withCredentials([file(credentialsId: 'JENKINS-CONNECT-TO-REMOTE-K8S', variable: 'KUBECONFIG')]) {
+         echo 'Deploy to Kubernetes'
+         // Use the KUBECONFIG variable to interact with Kubernetes
+         //sh 'kubectl --kubeconfig=$KUBECONFIG apply -f your-deployment.yaml'
+       }
+     }
+    }
   }
 //post {
 //    success {
