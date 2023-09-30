@@ -1,4 +1,4 @@
-pipeline {
+hpipeline {
   agent any
   stages {
     stage('Docker Build') {
@@ -18,7 +18,7 @@ pipeline {
     }
     stage('Docker Remove Image') {
       steps {
-        sh 'Docker Remove Image'
+        sh 'echo Docker Remove Image'
         //sh "docker rmi kmlaydin/podinfo:${env.BUILD_NUMBER}"
       }
     }
