@@ -16,12 +16,12 @@ hpipeline {
         }
       }
     }
-    stage('Docker Remove Image') {
-      steps {
-        sh 'echo Docker Remove Image'
-        //sh "docker rmi kmlaydin/podinfo:${env.BUILD_NUMBER}"
-      }
-    }
+   // stage('Docker Remove Image') {
+   //   steps {
+   //     sh 'echo Docker Remove Image'
+   //     //sh "docker rmi kmlaydin/podinfo:${env.BUILD_NUMBER}"
+   //   }
+   //}
    // stage('Apply Kubernetes Files') {
    //   steps {
    //       withKubeConfig([credentialsId: 'JENKINS-CONNECT-TO-REMOTE-K8S']) {
