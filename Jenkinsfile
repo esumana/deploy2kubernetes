@@ -38,6 +38,7 @@ pipeline {
          // Use the KUBECONFIG variable to interact with Kubernetes
          //sh 'kubectl --kubeconfig=$KUBECONFIG apply -f your-deployment.yaml'
          sh 'kubectl get no'
+         sh 'kubectl version -o json'
        }
      }
     }
